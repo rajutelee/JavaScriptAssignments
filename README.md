@@ -1,2 +1,2 @@
 # JavaScriptAssignments
-JavaScript small self assignment
+JavaScript self assignment
