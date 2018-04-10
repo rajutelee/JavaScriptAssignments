@@ -1,0 +1,57 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <!-- This page is copyright Elated Communications Ltd. (www.elated.com) -->
+
+    <title>JavaScript tabs example</title>
+
+    <style type="text/css">
+        .myclass{
+          opacity: 0.6;
+        }
+    </style>
+
+  </head>
+  <body>
+
+
+<button id="btn">My container</button>
+<div id="myElement">My Element</div>
+    
+
+
+    <script type="text/javascript">
+    
+    var myObj = {
+      init: function(){
+        myObj.myElm = document.getElementById("myElement");
+      },
+      _getExecution: function(){
+        this.init();
+        this.myElm.style.color = "green";
+      },
+      _createAnotherClick: function(){
+        var finalExecution = this._getExecution();
+        finalExecution = this.myElm.innerHTML = "fsfdsf";
+      },
+      _finalClick: function(){
+        var _self = this;
+        var finalClick = this._createAnotherClick();
+        setTimeout(function(){
+          finalClick += _self.myElm.setAttribute('class','myclass');
+          finalClick += _self.myElm.style.color = "red"; 
+        }, 1000)
+      }
+    }
+
+    var btn = document.getElementById("btn");
+    
+    btn.onclick = function(){
+      myObj._finalClick();
+    }
+
+    </script>
+  </body>
+</html>
