@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Tabs</title>
+  <style type="text/css">
+  .content-holder{
+    position: relative;
+  }
+  .content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    transition: all ease-in-out 0.5s;
+  }
+  .show{
+    visibility: visible;
+    opacity: 1;
+  }
+  ul {
+    border-bottom: solid 1px #ccc;
+    padding: 0;
+  }
+  .tabs {
+    list-style: none;
+    cursor: pointer;
+    display: inline-block;
+    border: solid 1px #ccc;
+    border-bottom: 0;
+    padding: 5px;
+  }
+  .active {
+    color: #009688;
+    background: #f0f0f0;   
+  }
+  </style>
+</head>
+
+<body>
+
+<ul>
+      <li id="link_0" class="tabs active" onclick="tabs(0)">Tab link 1</li>
+      <li id="link_1" class="tabs" onclick="tabs(1)">Tab Link 2</li>
+      <li id="link_2" class="tabs" onclick="tabs(2)"> Tabd link 3</li>
+</ul>
+<div class="content-holder">
+    <div class="content show" id="content_0">
+          Content 1<br> 
+    </div>
+    <div class="content" id="content_1">
+        Content 2<br> 
+    </div>
+    <div class="content" id="content_2">
+        Content 3<br> 
+    </div>
+</div>
+
+
+ <script type="text/javascript">
+ function tabs(selectedtab){
+
+        var selectContent = "content_" + selectedtab;
+        var content = document.getElementsByClassName("content");
+        for(var x = 0; x < content.length; x++){
+          
+               if(content[x].id == selectContent){
+                content[x].classList.add("show");
+              } else{
+                content[x].classList.remove("show");
+              }
+         
+        };
+
+        var s_tab = "link_" + selectedtab;       
+        var tabs = document.getElementsByClassName("tabs");
+
+          for(var x=0; x<tabs.length; x++) {
+
+              if (tabs[x].id == s_tab) {
+                tabs[x].classList.add("active");                       
+              } else {
+                tabs[x].classList.remove("active");
+              }
+       
+          }
+ }
+
+        
+  </script>
+</body>
+</html>
+
