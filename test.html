@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>-JavaScript</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <style>
+    .progressbar {
+        background: rgb(167, 30, 30);
+        height: 5px;
+        width:0;
+      }
+      .play {
+        background: green
+      }
+      .stop {
+        background: yellow;
+      }
+      .hide{
+        display: none;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="player-section">
+    <div class="audio-player">
+      <i class="play">play</i>
+      <i class="pause">pause</i>
+      <i class="stop">stop</i>
+      <div class="progressbar"></div>
+    </div>
+    <audio class="player">
+      <source src="https://qamangospring.s3.amazonaws.com/public/defaultPollyVoices/tr-TR_Filiz_sample.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIYMX3VWTAT2TYVYA%2F20190111%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20190111T044151Z&amp;X-Amz-Expires=172800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=e90d07b84a0411dcd524fef58a3d459daddde3a883c7221aebbd2da87a1a5f12"
+        type="audio/ogg">
+    </audio>
+  </div>
+
+
+  <div class="player-section">
+    <div class="audio-player">
+      <i class="play">play</i>
+      <i class="pause">pause</i>
+      <i class="stop">stop</i>
+      <div class="progressbar"></div>
+    </div>
+    <audio class="player">
+      <source src="https://qamangospring.s3.amazonaws.com/public/defaultPollyVoices/tr-TR_Filiz_sample.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIYMX3VWTAT2TYVYA%2F20190111%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20190111T044151Z&amp;X-Amz-Expires=172800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=e90d07b84a0411dcd524fef58a3d459daddde3a883c7221aebbd2da87a1a5f12"
+        type="audio/ogg">
+    </audio>
+  </div>
+
+  <script>
+    const audiPlayer = $('.audio-player'),
+      playButton = $('.play'),
+      stopButton = $('.stop'),
+      pauseButton = $('.pause'),
+      player = $('.player'),
+      progressbar = $('.progressbar');
+
+    $(playButton).off('click').on('click', (event) => {
+      event.stopPropagation();
+      const target = $(event.target),
+        playerSection = target.parents('.player-section');
+      playerSection.find(player)[0].play();
+      handleProgressbar(playerSection);
+    });
+
+    $(pauseButton).off('click').on('click', (event) => {
+      event.stopPropagation();
+      const target = $(event.target),
+        playerSection = target.parents('.player-section');
+      playerSection.find(player)[0].pause();
+    });
+
+    $(stopButton).off('click').on('click', (event) => {
+      event.stopPropagation();
+      const target = $(event.target),
+        playerSection = target.parents('.player-section');
+      playerSection.find(player)[0].currentTime = 0;
+      playerSection.find(player)[0].pause();
+      playerSection.find(progressbar).css('width', '0');
+    });
+
+    const handleProgressbar = (sec) => {
+      const playerElement = sec.find(player)[0],
+        sectionProgresbar = sec.find(progressbar)[0];
+      playerElement.addEventListener("timeupdate", () => {
+        const currentTime = playerElement.currentTime;
+        const duration = playerElement.duration;
+        $(sectionProgresbar).stop(true, true).animate({ 'width': (currentTime) / duration * 100 + '%' }, 250, 'linear')
+      })
+    }
+  </script>
+
+</body>
+
+</html>
