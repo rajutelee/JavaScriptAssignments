@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>-JavaScript</title>
+  
+  <style>
+    .ma-calculator-card {
+    border: 1px solid #C1C7D0;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    }
+    .ma-calculator-input {
+          padding: 40px 56px;
+    }
+    .ma-calculator-output {
+      padding: 40px 56px;
+      background-color: #F4F5F7;
+    }
+    .calculator_error {
+      display: none;
+      color: #BF2600;
+    }
+    </style>
+    
+</head>
+
+<body>
+
+  <div class="ma-calculator-card ma_calculator">
+        <div class="ma-calculator-input">
+          <input type="text" value="" placeholder="Please enter number of users" class="get_users">
+          <a href="javascript://" class="calculate_price_button">Calculate Price</a>
+          
+        </div>
+        <div class="ma-calculator-output">
+          <div class="calculator_error">Please enter a valid number</div>
+          <div>Other Product Price: $ <span class="other_product_price">--</span></div>
+          <div>Mango Product Price: $ <span class="mango_product_price">--</span></div>
+          <div>Seving Percentage: <span class="savng_percentage">--</span> %</div>
+          <div>Sevings Amount: $ <span class="savng_amount">--</span></div>
+        </div>
+
+  </div>
+
+
+  <script>
+    function CalculatePrice(section) {
+          var container = document.querySelector(section),
+              getUsers = container.querySelector('.get_users'),
+              calculatePriceButton = container.querySelector('.calculate_price_button'),
+              otherProductPrice = container.querySelector('.other_product_price'),
+              mangoProductPrice = container.querySelector('.mango_product_price'),
+              sevingAmount = container.querySelector('.savng_amount'),
+              sevingPercentage = container.querySelector('.savng_percentage'),
+              calculator_error = container.querySelector('.calculator_error');
+          
+          calculatePriceButton.addEventListener('click', function() {
+             var validateValue = /^[^-\s]\d*$/.test(getUsers.value);
+              if(validateValue) {
+                calculator_error.style.display = 'none';
+                var mango = getUsers.value;
+                if(mango <= 3 ) {
+                  mango *= 10;
+                } else if( mango == 4 ) {
+                  mango *= 80;
+                } else if ( mango >= 5 && mango <= 18 ) {
+                  mango *= 20;
+                } else {
+                  mango *= 12;
+                }
+                var other = getUsers.value * 100;
+                otherProductPrice.innerHTML = other;
+                mangoProductPrice.innerHTML = mango;
+                sevingPercentage.innerHTML = Math.round((other / mango * 10));
+                sevingAmount.innerHTML = (other - mango) * 12;
+            }else {
+                calculator_error.style.display = 'block';
+            }
+            
+          });
+
+    };
+    CalculatePrice('.ma_calculator');
+  </script>
+
+</body>
+
+</html>
