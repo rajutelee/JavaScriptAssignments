@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Javascript</title>
+</head>
+
+<body>
+    
+    <script>
+// arrow function does not have prototype property.
+    
+// Object Prototype using Object.create
+
+    function Animal(name, energy) {
+        let animal = Object.create(Animal.prototype);
+        animal.name = name;
+        animal.energy = energy;
+        return animal;
+    }
+
+    Animal.prototype.eat = function(amount) {
+        console.log(`${this.name} is eating`);
+        this.energy += amount;
+    };
+
+    Animal.prototype.play = function(length) {
+        console.log(`${this.name} is playing`);
+        this.energy -= length;
+    }
+
+    Animal.prototype.sleep = function(length) {
+        console.log(`${this.name} is sleeping`);
+        this.energy += length;
+    }
+
+    const dog = Animal('dog', 50);
+
+    for( let key in dog) {
+        if(dog.hasOwnProperty(key)) {
+            console.log(`key: ${key} value: ${dog[key]}`)
+        }
+	    
+    }
+
+// Object Prototype using new kyeword
+
+    function newAnimal(name, energy) {
+        this.name = name;
+        this.energy = energy;
+    }
+
+    newAnimal.prototype.eat = function(amount) {
+            console.log(`${this.name} is eating`);
+            this.energy += amount;
+        };
+
+    newAnimal.prototype.play = function(length) {
+        console.log(`${this.name} is playing`);
+        this.energy -= length;
+    }
+
+    newAnimal.prototype.sleep = function(length) {
+        console.log(`${this.name} is sleeping`);
+        this.energy += length;
+    }
+
+    const tiger = new newAnimal('Tiger', 50);
+
+    for( let key in tiger) {
+	    console.log(`key: ${key} value: ${tiger[key]} `)
+    }
+
+/* Class 
+
+class domesticAnimal {
+    constructor(name, energy) {
+        this.name = name;
+        this.energy = energy
+    }
+    eat(amount) {
+        console.log(`${this.name} is eating`);
+        this.energy += amount;
+    }
+
+    paly(length) {
+        console.log(`${this.name} is playing`);
+        this.energy -= length;
+    }
+    sleep(length) {
+        console.log(`${this.name} is sleeping`);
+        this.energy += length;
+    }
+
+    const cat = new domesticAnimal('cat', 20);
+*/
+</script>
+
+</body>
+
+</html>
