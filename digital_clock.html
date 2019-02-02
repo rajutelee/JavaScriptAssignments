@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Javascript</title>
+</head>
+
+<body>
+    <div id="clock"></div>
+    
+    <script>
+        
+        // Dgital Clock
+
+        function digitlClock() {
+
+            let date = new Date(),
+                houres = date.getHours() + '',
+                minutes = date.getMinutes() + '',
+                seconds = date.getSeconds() + '',
+                day = date.getDay();
+
+                if( houres.length < 2 ) {
+                    houres = '0' + houres;
+                }
+
+                if( minutes < 2 ) {
+                    minutes = '0' + minutes;
+                }
+
+                if( seconds < 2 ) {
+                    seconds = '0' + seconds;
+                }
+
+            const weekDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                clock = `${weekDay[day]} ${houres}: ${minutes}: ${seconds} `; 
+        
+            document.getElementById('clock').innerHTML = clock;
+
+        }
+
+        digitlClock();
+
+        setInterval(digitlClock, 1000)
+
+    </script>  
+
+</body>
+
+</html>
