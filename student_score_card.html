@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>javascript</title>
+</head>
+
+<body>
+Student Score Card
+<script>
+
+        const students = [
+            {
+                name: 'Raju',
+                score1: 47,
+                score2: 46
+            },
+            {
+                name: 'Vipin',
+                score1: 23,
+                score2: 24
+            },
+            {
+                name: 'Ganesh',
+                score1: 40,
+                score2: 35
+            },
+            {
+                name: 'Umesh',
+                score1: 44,
+                score2: 45
+            },
+
+        ];
+
+
+        const scores = [91, 81, 71, 61, 51],
+            degrees = ['A', 'B', 'c', 'D', 'E '];
+
+
+        function calSum( scr1, scr2) {
+            const sum = scr1 + scr2;
+            return sum;
+        }
+
+
+        function calcFinal() {
+
+            for( let i = 0; i < students.length; i++ ) {
+
+                students[i].sum = calSum( students[i].score1, students[i].score2 );
+
+                if( students[i].sum >= 51 ) {
+
+                    console.log (`${students[i].name} passed final exam successully` );
+
+                    for(let x = 0; x < scores.length; x++) {
+
+                        if( students[i].sum >= scores[x] ) {
+                            console.log( `He has ${students[i].sum} points and he got diploma with degree ${degrees[x]}`);
+                            console.log('---------------------------');
+                            break;
+                        }
+
+                    }
+
+                } else {
+                    console.log (`${students[i].name} got ${students[i].sum} points, has faild and has to try next year.` );
+                    console.log('---------------------------');
+                }
+            }
+
+        };
+
+        calcFinal();
+
+</script>
+
+</body>
+
+
+
+</html>
